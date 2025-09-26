@@ -21,7 +21,7 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 echo "CONFIG_PSI=y
 CONFIG_KPROBES=y" >> target/linux/rockchip/armv8/config-6.6
 
-rm target/linux/rockchip/image/armv8.mk
+rm -f target/linux/rockchip/image/armv8.mk
 wget https://github.com/retro98boy/openwrt/tree/24.10/target/linux/rockchip/image/armv8.mk
 cp -f armv8.mk target/linux/rockchip/image/
 
