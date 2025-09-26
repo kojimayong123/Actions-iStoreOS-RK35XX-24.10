@@ -22,8 +22,7 @@ echo "CONFIG_PSI=y
 CONFIG_KPROBES=y" >> target/linux/rockchip/armv8/config-6.6
 
 rm -f target/linux/rockchip/image/armv8.mk
-wget https://github.com/retro98boy/openwrt/tree/24.10/target/linux/rockchip/image/armv8.mk
-cp -f armv8.mk target/linux/rockchip/image/
+cp -f $GITHUB_WORKSPACE/configfiles/armv8.mk target/linux/rockchip/image/
 
 wget https://github.com/retro98boy/openwrt/tree/24.10/target/linux/rockchip/patches-6.6/501-add-smart-am40.patch
 cp -f 501-add-smart-am40.patch target/linux/rockchip/patches-6.6/
