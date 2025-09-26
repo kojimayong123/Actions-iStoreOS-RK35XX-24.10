@@ -21,19 +21,14 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 echo "CONFIG_PSI=y
 CONFIG_KPROBES=y" >> target/linux/rockchip/armv8/config-6.6
 
-# 追加AM40型号
-echo -e "\\ndefine Device/smart_am40
-  DEVICE_VENDOR := SMART
-  DEVICE_MODEL := AM40
-  SOC := rk3399
-  DEVICE_PACKAGES := wpad-mbedtls kmod-rtw88-8822be kmod-bluetooth kmod-usb-dwc3 \
-  kmod-sound-soc-simple-card kmod-sound-soc-rockchip kmod-sound-soc-hdmi-codec \
-  kmod-drm-rockchip kmod-drm-panfrost kmod-extcon-usbc-virtual-pd rockchip-cdn-dp-firmware
-endef
-TARGET_DEVICES += smart_am40" >> target/linux/rockchip/image/armv8.mk
+rm target/linux/rockchip/image/armv8.mk
+wget https://github.com/retro98boy/openwrt/tree/24.10/target/linux/rockchip/image/armv8.mk
+cp -f armv8.mk target/linux/rockchip/image/
 
 wget https://github.com/retro98boy/openwrt/tree/24.10/target/linux/rockchip/patches-6.6/501-add-smart-am40.patch
 cp -f 501-add-smart-am40.patch target/linux/rockchip/patches-6.6/
+wget https://github.com/retro98boy/openwrt/tree/24.10/package/boot/uboot-rockchip/patches/201-add-smart-am40.patch
+cp -f 201-add-smart-am40.patch package/boot/uboot-rockchip/patches/
 
 # 集成CPU性能跑分脚本
 cp -f $GITHUB_WORKSPACE/configfiles/coremark/coremark-arm64 package/base-files/files/bin/coremark-arm64
