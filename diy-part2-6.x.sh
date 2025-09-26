@@ -27,8 +27,12 @@ cp -f armv8.mk target/linux/rockchip/image/
 
 wget https://github.com/retro98boy/openwrt/tree/24.10/target/linux/rockchip/patches-6.6/501-add-smart-am40.patch
 cp -f 501-add-smart-am40.patch target/linux/rockchip/patches-6.6/
+
 wget https://github.com/retro98boy/openwrt/tree/24.10/package/boot/uboot-rockchip/patches/201-add-smart-am40.patch
 cp -f 201-add-smart-am40.patch package/boot/uboot-rockchip/patches/
+
+rm -f package/boot/uboot-rockchip/Makefile
+cp -f $GITHUB_WORKSPACE/configfiles/Makefile package/boot/uboot-rockchip/
 
 # 集成CPU性能跑分脚本
 cp -f $GITHUB_WORKSPACE/configfiles/coremark/coremark-arm64 package/base-files/files/bin/coremark-arm64
